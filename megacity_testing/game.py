@@ -1,15 +1,13 @@
 import libtcodpy as libtcod
 import level
+import entity
 
-testlevel = level.Level(10,10)
+test = level.Level(40,40)
+testEnt = entity.Entity(10,10,'#',libtcod.white)
+test.addEntity(testEnt)
+libtcod.console_set_custom_font("term10x16.png",libtcod.FONT_LAYOUT_TCOD)
+libtcod.console_init_root(40,40,"Test")
 
-def drawScreen(h, w):
-    for y in range(h):
-        for x in range(w):
-            testlevel.draw_coord(y, x)
-            
-
-# inits
-
-testlevel = level.Level(10,10)
-drawScreen(10, 10)
+while not libtcod.console_is_window_closed():
+    libtcod.console_flush()
+    test.draw()

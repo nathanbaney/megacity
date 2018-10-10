@@ -7,9 +7,9 @@ class Drawable:
         self.color = color
         self.char = char
     
-    def draw(self. con):
+    def draw(self, con):
         libtcod.console_set_default_foreground(con, self.color)
-        libtcod.console_put_char(con, self.x, self.y, self.char. libtcod.BKGND_NONE)
+        libtcod.console_put_char(con, self.x, self.y, self.char, libtcod.BKGND_NONE)
 
     def clear(self, con):
         libtcod.console_put_char(con, self.x, self.y, ' ', libtcod.BKGND_NONE)
