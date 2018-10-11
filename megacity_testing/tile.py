@@ -1,5 +1,4 @@
 import libtcodpy as libtcod
-import drawable
 import entity
 
 class Tile:
