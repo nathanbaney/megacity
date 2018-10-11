@@ -2,22 +2,17 @@ import libtcodpy as libtcod
 import drawable
 import entity
 
-class Tile(drawable.Drawable):
+class Tile:
     
-    def __init__(self, x, y, char, color, isSeeThru = True, isObstacle = False):
-        self.x = x
-        self.y = y
-        self.color = color
-        self.char = char
-        self.isSeeThru = isSeeThru
-        self.isObstacle = isObstacle
-        self.contents = []
+    def __init__(self, xin, yin, charin, colorin, isSeeThruin = True, isObstaclein = False):
+        self.x = xin
+        self.y = yin
+        self.color = colorin
+        self.char = charin
+        self.isSeeThru = isSeeThruin
+        self.isObstacle = isObstaclein
+        
     def draw(self, con):
-        if (len(self.contents) == 0):
-            libtcod.console_set_default_foreground(con, self.color)
-            libtcod.console_put_char(con, self.x, self.y, self.char, libtcod.BKGND_NONE)
-        else:
-            self.contents[0].draw(0)
-             
-    def addEntity(self, entity):
-        self.contents.append(entity)
+        libtcod.console_set_default_foreground(con, self.color)
+        libtcod.console_put_char(con, self.x, self.y, self.char, libtcod.BKGND_NONE)
+    
