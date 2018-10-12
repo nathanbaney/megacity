@@ -8,9 +8,9 @@ class Entity:
         self.char = charin
         self.color = colorin
 
-    def draw(self, con):
-        libtcod.console_set_default_foreground(con, self.color)
-        libtcod.console_put_char(con, self.x, self.y, self.char, libtcod.BKGND_NONE)
+    def draw(self):
+        libtcod.console_set_default_foreground(0,self.color)
+        libtcod.console_put_char(0,self.x, self.y, self.char, libtcod.BKGND_NONE)
 
     def get_info(self):
         return
@@ -43,27 +43,27 @@ class Entity:
         dx = 0
         dy = 0
         if dir == 1:#down left
-            dx = -1
-            dy = 1
+            dx = -distance
+            dy = distance
         elif dir == 2:#down
-            dy = 1
+            dy = distance
         elif dir == 3:#down right
-            dx = 1
-            dy = 1
+            dx = distance
+            dy = distance
         elif dir == 4:#left
-            dx = -1
+            dx = -distance
         elif dir == 5:#nada
             return
         elif dir == 6:#right 
-            dx = 1
+            dx = distance
         elif dir == 7:#up left
-            dx = -1
-            dy = -1
+            dx = -distance
+            dy = -distance
         elif dir == 8:#up
-            dy = -1
+            dy = -distance
         elif dir == 9:#up right
-            dx = 1
-            dy = -1
+            dx = distance
+            dy = -distance
         return (self.x + dx, self.y + dy)
             
         

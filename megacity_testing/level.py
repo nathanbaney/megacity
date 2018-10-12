@@ -2,10 +2,14 @@ import libtcodpy as libtcod
 import tile
 import entity
 import room
+import complexroom
+import wall
 
 class Level:
     entities = []
     rooms = []
+    crooms = []
+    walls = []
         
     def __init__(self, w, h):
         self.w = w
@@ -19,8 +23,12 @@ class Level:
                 self.lvl[x][y].draw(0)
         for room in self.rooms:
             room.draw()
+        for wall in self.walls:
+            wall.draw()
+        for croom in self.crooms:
+            croom.draw()
         for entity in self.entities:
-            entity.draw(0)
+            entity.draw()
  
     def add_entity(self, entity):
         self.entities.append(entity)
@@ -40,18 +48,49 @@ class Level:
     def move_entity(self, entity, dir):
         if self.check_entity_collision(entity, dir) == False:
             entity.move(dir)
+        else:
+            print "bump"
         
     def add_room(self, room):
         self.rooms.append(room)
         tempcoords = room.get_coords()
-        try:
-            tempcoord = tempcoords.pop()
-        except:
-            print "pop from empty list"
-        self.lvl[tempcoord[0]][tempcoord[1]].isObstacle = True
+        while len(tempcoords) > 0:
+            try:
+                tempcoord = tempcoords.pop()
+            except:
+                print "pop from empty list"
+            self.set_tile_to_obstacle(tempcoord[0],tempcoord[1])
 
     def pop_room(self):
         return self.rooms.pop()
+
+    def add_wall(self, wall):
+        self.walls.append(wall)
+        tempcoords = wall.get_coords()
+        while len(tempcoords) > 0:
+            try:
+                tempcoord = tempcoords.pop()
+            except:
+                print "pop from empty wall list"
+            self.set_tile_to_obstacle(tempcoord[0],tempcoord[1])
+
+    def add_croom(self, croom):
+        self.crooms.append(croom)
+        for wall in croom.get_walls():
+            tempcoords = wall.get_coords()
+            print "croom wall added"
+            while len(tempcoords) > 0:
+                try:
+                    tempcoord = tempcoords.pop()
+                except:
+                    print "pop from empty croom wall list"
+                self.set_tile_to_obstacle(tempcoord[0],tempcoord[1])
+            
+    def pop_wall(self):
+        return self.walls.pop()
+
+    def set_tile_to_obstacle(self, x, y, state = True):
+        self.lvl[x][y].isObstacle = state
 
 
     

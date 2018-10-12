@@ -9,23 +9,15 @@ class Room:
         self.color = color
 
     def draw(self):
-        for tempx in range(self.x + self.size):
-            for tempy in range(self.y + self.size):
+        for tempx in range(self.size):
+            for tempy in range(self.size):
                  libtcod.console_set_default_foreground(0, self.color)
                  libtcod.console_put_char(0, tempx + self.x, tempy+self.y, self.char, libtcod.BKGND_NONE)
 
     def get_coords(self):
         coords = []
-        tempcoord = 0,0
         for tempx in range(self.size):
-            if tempx == 0 or tempx == self.size:
-                for tempy in range(self.size):
-                    tempcoord = self.x+tempx, self.y+tempy
+            for tempy in range(self.size):
+                    tempcoord = tempx+self.x, tempy+self.y
                     coords.append(tempcoord)
-            else:
-                tempcoord = tempx, self.y
-                coords.append(tempcoord)
-                tempcoord = tempx, self.y+self.size
-                coords.append(tempcoord)
-
         return coords

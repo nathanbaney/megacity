@@ -14,4 +14,6 @@ class Tile:
     def draw(self, con):
         libtcod.console_set_default_foreground(con, self.color)
         libtcod.console_put_char(con, self.x, self.y, self.char, libtcod.BKGND_NONE)
-    
+
+    def set_char(self, char):
+        self.char = char 
