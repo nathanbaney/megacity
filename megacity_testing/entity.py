@@ -1,6 +1,8 @@
 import libtcodpy as libtcod
 
 class Entity:
+    #inventory for items
+    inv = []
     
     def __init__(self, xin, yin, charin, colorin):
         self.x = xin
