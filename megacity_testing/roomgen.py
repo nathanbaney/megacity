@@ -15,7 +15,7 @@ class Partition:
     room = None
     node1 = None
     node2 = None
-    def __init__(self,x,y,w,h,cutdist=16,orientation = 0):
+    def __init__(self,x,y,w,h,cutdist=16,orientation = 1):
         self.x = x #x and y are top left point of partition
         self.y = y
         self.w = w
@@ -25,8 +25,8 @@ class Partition:
 
     def cut(self):
         if self.orientation == 0: #horizontal cut
-            self.node1 = Partition(self.x,self.y,self.w,self.h-self.cutdist,self.cutdist/2)
-            self.node2 = Partition(self.x,self.y+self.cutdist,self.w,self.h-self.cutdist,self.cutdist/2)
+            self.node1 = Partition(self.x,self.y,self.w,self.h-self.cutdist,self.cutdist/2,self.orientation)
+            self.node2 = Partition(self.x,self.y+self.cutdist,self.w,self.h-self.cutdist,self.cutdist/2,self.orientation)
         elif self.orientation == 1: #vertical cut
             self.node1 = Partition(self.x,self.y,self.w-self.cutdist,self.h,self.cutdist/2)
             self.node2 = Partition(self.x+self.cutdist,self.y-self.cutdist,self.w-self.cutdist,self.h,self.cutdist/2)
