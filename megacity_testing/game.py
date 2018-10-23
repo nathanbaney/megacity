@@ -43,10 +43,9 @@ def read_inputs():
 #wdw = window.Window(20,40)
 
 test = level.Level(MAIN_X,MAIN_Y)
-test.generate_rooms(10,10,32,32,4)
 test_entity = entity.Entity(15,15,'E',libtcod.green)
 test_entity2 = entity.Entity(17,15,'2',libtcod.yellow)
-test_room = room.Room(3,3,7,20, 205, libtcod.red)
+test_room = room.Room(0,3,7,20, 205, libtcod.red)
 test_wall = wall.Wall(20,20,'W',libtcod.blue,20,3)
 verteces = ((20,20),(20,30),(40,30),(40,20))
 test_croom = complexroom.ComplexRoom(verteces, 'C', libtcod.orange)

@@ -4,7 +4,6 @@ import entity
 import room
 import complexroom
 import wall
-import roomgen
 
 class Level:
     entities = []
@@ -94,16 +93,6 @@ class Level:
     def set_tile_to_obstacle(self, x, y, state = True):
         self.lvl[x][y].isObstacle = state
 
-    def generate_rooms(self, x, y, w, h, dimension_min):
-        gen = roomgen.RoomGen(x,y,w,h)
-        genrooms = gen.generate(dimension_min)
-        while len(genrooms) > 0:
-            try:
-                genroom = genrooms.pop()
-            except:
-                print "pop from empty genroom list"
-            self.add_room(genroom)
-        
         
         
 
